@@ -1,9 +1,14 @@
 import { Routes } from "@angular/router";
-import { AppComponent } from "../app.component";
+import { AuthPageComponent } from "../components/pages/auth-page/auth-page.component";
+import { NotFoundPageComponent } from "../components/pages/not-found-page/not-found-page.component";
 
 export const APP_ROUTES: Routes = [
     {
         path: '',
-        component: AppComponent
+        component: AuthPageComponent
+    },
+    {
+        path: '**',
+        component: NotFoundPageComponent
     }
 ];
