@@ -5,4 +5,18 @@ body {
     background: var(--light-theme-main-bg);
     width: 100vw;
     height: 100vh;
+    font-family: var(--font-family);
+}
+
+.logo-component {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+}
+
+.stepper-component {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

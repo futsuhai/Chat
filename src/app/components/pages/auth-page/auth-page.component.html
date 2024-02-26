@@ -1,3 +1,8 @@
-<div class="content-wrapper content-wrapper_desktop">
-    <app-login-form></app-login-form>
+<div class="forms-wrapper login-form-component__forms-wrapper">
+    <ng-container *ngIf="!formSwitched; else Register">
+        <app-login-form (switchedForm)="switchForm()"></app-login-form>
+    </ng-container>
+    <ng-template #Register>
+        <app-register-form (switchedForm)="switchForm()"></app-register-form>
+    </ng-template>
 </div>

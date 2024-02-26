@@ -1,3 +1,47 @@
 <form class="login-form login-form-component__login-form">
-
+    <app-logo></app-logo>
+    <div class="main">
+        <p class="main__title">
+            Welcome, login to your account!
+        </p>
+    </div>
+    <div class="controls">
+        <div class="inputs">
+            <div class="form-group">
+                <label for="login" class="form-group__label">Login</label>
+                <input id="login" type="text" class="input_base form-group__input">
+            </div>
+            <div class="form-group">
+                <label for="password" class="form-group__label">Password</label>
+                <input id="password" type="password" class="input_base form-group__input">
+            </div>
+        </div>
+        <div class="account-options controls__account-options">
+            <div class="checkbox">
+                <label class="check">
+                    <input class="check__input" type="checkbox" id="checkbox">
+                    <span class="check__box"></span>
+                </label>
+                <p class="checkbox__label">
+                    Remember me
+                </p>
+            </div>
+            <a href="#" class="account-options__password">
+                Forgot password?
+            </a>
+        </div>
+        <div class="button-wrapper">
+            <button type="submit" class="button-wrapper__button button_primary">
+                Login now
+            </button>
+        </div>
+        <div class="auth-navigate">
+            <p class="auth-navigate__text">
+                Don't have an account yet?
+            </p>
+            <button type="button" class="auth-navigate__button button_empty" (click)="switchForm()">
+                Sign up!
+            </button>
+        </div>
+    </div>
 </form>

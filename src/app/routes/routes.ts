@@ -5,6 +5,7 @@ import { NotFoundPageComponent } from "../components/pages/not-found-page/not-fo
 export const APP_ROUTES: Routes = [
     {
         path: '',
+        title: 'Auth',
         component: AuthPageComponent
     },
     {
