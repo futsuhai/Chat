@@ -1,7 +1,7 @@
 @import "src/app/styles/mixins";
 
 .register-form-component {
-    &__register-form-wrapper {
+    &__auth-form-wrapper {
         padding: 40px;
     }
 
@@ -10,26 +10,7 @@
     }
 }
 
-.register-form-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 32px;
-}
-
-.controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
 .inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
     &__title {
         margin-bottom: 8px;
         align-self: center;

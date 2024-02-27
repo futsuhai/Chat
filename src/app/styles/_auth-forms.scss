@@ -35,3 +35,24 @@
 .button-wrapper {
     width: 100%;
 }
+
+.auth-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.auth-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

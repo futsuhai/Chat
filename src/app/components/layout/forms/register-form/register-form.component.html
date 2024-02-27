@@ -1,11 +1,11 @@
-<div class="register-form-wrapper register-form-component__register-form-wrapper">
+<div class="auth-form-wrapper register-form-component__auth-form-wrapper">
     <app-logo></app-logo>
     <app-stepper 
         [currentStage]="currentStage" 
         class="register-form-component__stepper">
     </app-stepper>
-    <form class="controls">
-        <div class="inputs">
+    <form class="auth-form">
+        <div class="auth-inputs">
             <ng-container [ngSwitch]="currentStage">
                 <ng-container *ngSwitchCase="1">
                     <p class="inputs__title">
