@@ -13,34 +13,34 @@
                     </p>
                     <div class="form-group">
                         <label for="login" class="form-group__label">Login</label>
-                        <input id="login" type="text" class="input_base form-group__input">
+                        <input id="login" type="text" class="input_base input_auth form-group__input">
                     </div>
                     <div class="form-group">
                         <label for="email" class="form-group__label">Email</label>
-                        <input id="email" type="email" class="input_base form-group__input">
+                        <input id="email" type="email" class="input_base input_auth form-group__input">
                     </div>
                     <div class="form-group-row">
                         <div class="form-group">
                             <label for="name" class="form-group__label">Name</label>
-                            <input id="name" type="text" class="input_base form-group-row__input">
+                            <input id="name" type="text" class="input_base input_auth form-group-row__input">
                         </div>
                         <div class="form-group">
                             <label for="surname" class="form-group__label">Surname</label>
-                            <input id="surname" type="text" class="input_base form-group-row__input">
+                            <input id="surname" type="text" class="input_base input_auth form-group-row__input">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="form-group__label">Password</label>
-                        <input id="password" type="password" class="input_base form-group__input">
+                        <input id="password" type="password" class="input_base input_auth form-group__input">
                     </div>
                     <div class="form-group-row">
                         <div class="form-group">
                             <label for="city" class="form-group__label">City</label>
-                            <input id="city" type="text" class="input_base form-group-row__input">
+                            <input id="city" type="text" class="input_base input_auth form-group-row__input">
                         </div>
                         <div class="form-group">
                             <label for="age" class="form-group__label">Age</label>
-                            <input id="age" type="text" class="input_base form-group-row__input">
+                            <input id="age" type="text" class="input_base input_auth form-group-row__input">
                         </div>
                     </div>
                 </ng-container>
@@ -48,18 +48,46 @@
                     <p class="inputs__title">
                         Additional information
                     </p>
+                    <div class="form-group">
+                        <label for="bio" class="form-group__label">Bio</label>
+                        <textarea id="bio" class="form-group__textarea input_base input_auth"></textarea>
+                    </div>
+                    <ng-container *ngFor="let input of [1, 2, 3]">
+                        <div class="form-group">
+                            <label for="url" class="form-group__label">Social Media URL #{{ input }}</label>
+                            <input id="url" type="text" class="input_base input_auth form-group__input">
+                        </div>
+                    </ng-container>
                 </ng-container>
                 <ng-container *ngSwitchCase="3">
                     <p class="inputs__title">
                         Specialization
                     </p>
+                    <div class="specializations">
+                        <div *ngFor="let spec of specializations" class="checkbox">
+                            <label class="check">
+                                <input class="check__input" type="checkbox" id="checkbox">
+                                <span class="check__box"></span>
+                            </label>
+                            <p class="checkbox__label">
+                                {{ spec }}
+                            </p>
+                        </div>
+                    </div>
                 </ng-container>
             </ng-container>
         </div>
         <div class="button-wrapper">
-            <button type="button" class="button-wrapper__button button_primary" (click)="editStage()">
-                Continue
-            </button>
+            <ng-container *ngIf="currentStage !== 3; else SignUp">
+                <button type="button" class="button-wrapper__button button_primary" (click)="editStage()">
+                    Continue
+                </button>
+            </ng-container>
+            <ng-template #SignUp>
+                <button type="submit" class="button-wrapper__button button_primary" (click)="editStage()">
+                    Sign up
+                </button>
+            </ng-template>
         </div>
         <div class="auth-navigate">
             <p class="auth-navigate__text">

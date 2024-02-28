@@ -6,6 +6,15 @@
     &__input {
         width: 340px;
     }
+
+    &__textarea {
+        resize: none;
+        height: 144px;
+    }
+
+    &__alert {
+        color: var(--red-normal);
+    }
 }
 
 .form-group-row {

@@ -37,15 +37,6 @@
     }
 }
 
-.checkbox {
-    display: flex;
-
-    &__label {
-        margin-top: 4px;
-        margin-left: 30px;
-    }
-}
-
 @include sm {
     .login-form-component {
         &__login-form {

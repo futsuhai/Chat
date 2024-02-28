@@ -7,9 +7,25 @@
         background: var(--white);
         padding: 10px 20px;
         height: 48px;
+        outline: none;
 
         &:hover, &:focus, &:active {
             border: 2px solid var(--gray);
+        }
+    }
+
+    &_auth {
+        &:hover, &:focus, &:active {
+            border: 2px solid var(--violet-primary);
+        }
+    }
+
+    &_invalid {
+        border: 2px solid var(--red-normal);
+        background: var(--red-light);
+
+        &:hover, &:focus, &:active {
+            border: 2px solid var(--red-normal);
         }
     }
 }
