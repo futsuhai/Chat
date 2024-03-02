@@ -21,11 +21,11 @@
     }
 
     &_invalid {
-        border: 2px solid var(--red-normal);
+        border: 2px solid var(--red);
         background: var(--red-light);
 
         &:hover, &:focus, &:active {
-            border: 2px solid var(--red-normal);
+            border: 2px solid var(--red);
         }
     }
 }

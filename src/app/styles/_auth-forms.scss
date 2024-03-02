@@ -7,23 +7,23 @@
         width: 340px;
     }
 
+    &__input-short {
+        width: 165px;
+    }
+
     &__textarea {
         resize: none;
         height: 144px;
     }
 
     &__alert {
-        color: var(--red-normal);
+        color: var(--red);
     }
 }
 
 .form-group-row {
     display: flex;
     gap: 10px;
-
-    &__input {
-        width: 165px;
-    }
 }
 
 .auth-navigate {
@@ -64,4 +64,29 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+}
+
+.title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__back {
+        position: absolute;
+        left: 0px;
+        margin-top: 4px;
+    }
+
+    &__back-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    &__stage-title {
+        color: var(--violet-primary);
+        font-weight: 700;
+        font-family: var(--secont-family);
+        font-size: var(--text-size-m);
+    }
 }

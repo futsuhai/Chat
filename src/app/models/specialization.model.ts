@@ -12,18 +12,3 @@ export enum Specialization {
     Python = 'Python',
     SQL = 'SQL'
 }
-
-export const Specializations: string[] = [
-    'Web Developer',
-    'Backend Developer',
-    'Angular',
-    'Dotnet',
-    'React',
-    'Java',
-    'Vue',
-    'Python',
-    'Designer',
-    'SQL',
-    'Project Manager',
-    'DevOps',
-];
