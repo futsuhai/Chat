@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { LogoComponent } from '../../logo/logo.component';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SiteConfigState } from 'src/app/utils/site-state-config';
+import { AuthService } from 'src/app/services/auth.service';
+import { IAccountAuth } from 'src/app/models/account-auth.model';
+import { IAccount } from 'src/app/models/account.model';
 
 @Component({
   selector: 'app-login-form',
@@ -19,7 +22,7 @@ export class LoginFormComponent {
   @Output() switchedForm: EventEmitter<void> = new EventEmitter<void>();
   public loginForm: FormGroup;
 
-  constructor(private siteStateConfig: SiteConfigState) {
+  constructor(private siteStateConfig: SiteConfigState, private authService: AuthService) {
     this.loginForm = this.initLoginForm();
   }
 
@@ -47,10 +50,16 @@ export class LoginFormComponent {
   public submitLoginForm(): void {
     if (this.loginForm.valid) {
       const formValue = this.loginForm.value;
-      // login request
       console.log(formValue);
-    } else {
-      console.log("Not Valid");
+      const user: IAccountAuth = {
+        login: formValue.login,
+        password: formValue.password
+      };
+      this.authService.login(user).subscribe({
+        next: (account: IAccount) => {
+          console.log("Logged successfully", account);
+        }
+      });
     }
   }
 

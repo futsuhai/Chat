@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SiteConfigState } from 'src/app/utils/site-state-config';
 import { RegisterService } from 'src/app/services/register.service';
-import { IUserAuth } from 'src/app/models/user-auth.model';
+import { IAccountAuth } from 'src/app/models/account-auth.model';
 
 @Component({
   selector: 'app-register-form-spec',
@@ -22,12 +22,12 @@ export class RegisterFormSpecComponent {
   @Output() decrementStage: EventEmitter<void> = new EventEmitter<void>();
   public registerSpecForm: FormGroup;
   public specializations: string[] = [];
-  public savedUser!: IUserAuth;
+  public savedUser!: IAccountAuth;
 
   constructor(private siteStateConfig: SiteConfigState, private registerService: RegisterService, private fb: FormBuilder) {
     this.specializations = this.siteStateConfig.Specializations;
-    if (this.registerService.currentRegistrationUser.value !== null) {
-      this.savedUser = this.registerService.currentRegistrationUser.value; 
+    if (this.registerService.currentRegistrationAccount.value !== null) {
+      this.savedUser = this.registerService.currentRegistrationAccount.value; 
       this.registerSpecForm = this.initSavedRegisterSpecForm();
     } else {
       this.registerSpecForm = this.initRegisterSpecForm();
@@ -61,7 +61,7 @@ export class RegisterFormSpecComponent {
           specArray.push(this.specializations[index]);
         }
       });
-      const user: IUserAuth = {
+      const user: IAccountAuth = {
         specializations: specArray
       };
       this.registerService.updateRegistrationUser(user);
@@ -78,7 +78,7 @@ export class RegisterFormSpecComponent {
           specArray.push(this.specializations[index]);
         }
       });
-      const user: IUserAuth = {
+      const user: IAccountAuth = {
         specializations: specArray
       };
       this.registerService.updateRegistrationUser(user);

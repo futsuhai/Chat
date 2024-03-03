@@ -1,3 +1,5 @@
+using Chat_Backend.Models.Backend;
+
 namespace Chat_Backend.Models.Frontend
 {
     public class AccountModel
@@ -12,5 +14,6 @@ namespace Chat_Backend.Models.Frontend
         public required string Bio { get; set; }
         public required List<string> SocialMediaUrls { get; set; } = new List<string>();
         public required List<string> Specializations { get; set; } = new List<string>();
+        public Tokens? Tokens { get; set; }
     }
 }

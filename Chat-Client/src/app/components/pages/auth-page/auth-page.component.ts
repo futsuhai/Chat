@@ -20,5 +20,4 @@ export class AuthPageComponent {
   public switchForm(): void {
     this.formSwitched = !this.formSwitched;
   }
-
 }

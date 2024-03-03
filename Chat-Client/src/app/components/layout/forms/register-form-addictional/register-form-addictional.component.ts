@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RegisterService } from 'src/app/services/register.service';
-import { IUserAuth } from 'src/app/models/user-auth.model';
+import { IAccountAuth } from 'src/app/models/account-auth.model';
 
 @Component({
   selector: 'app-register-form-addictional',
@@ -19,11 +19,11 @@ export class RegisterFormAddictionalComponent {
   @Output() incrementStage: EventEmitter<void> = new EventEmitter<void>();
   @Output() decrementStage: EventEmitter<void> = new EventEmitter<void>();
   public registerAddictionalForm: FormGroup;
-  public savedUser!: IUserAuth;
+  public savedUser!: IAccountAuth;
 
   constructor(private registerService: RegisterService) {
-    if (this.registerService.currentRegistrationUser.value !== null) {
-      this.savedUser = this.registerService.currentRegistrationUser.value;
+    if (this.registerService.currentRegistrationAccount.value !== null) {
+      this.savedUser = this.registerService.currentRegistrationAccount.value;
       this.registerAddictionalForm = this.initSavedRegisterAddictionalForm();
     } else {
       this.registerAddictionalForm = this.initRegisterAddictionalForm();
@@ -61,7 +61,7 @@ export class RegisterFormAddictionalComponent {
         formValue.url2,
         formValue.url3
       ];
-      const user: IUserAuth = {
+      const user: IAccountAuth = {
         bio: formValue.bio,
         socialMediaUrls: socialMediaUrls
       };

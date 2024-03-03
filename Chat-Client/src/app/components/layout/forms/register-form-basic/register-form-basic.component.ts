@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SiteConfigState } from 'src/app/utils/site-state-config';
 import { RegisterService } from 'src/app/services/register.service';
-import { IUserAuth } from 'src/app/models/user-auth.model';
+import { IAccountAuth } from 'src/app/models/account-auth.model';
 
 @Component({
   selector: 'app-register-form-basic',
@@ -19,11 +19,11 @@ export class RegisterFormBasicComponent {
 
   @Output() incrementStage: EventEmitter<void> = new EventEmitter<void>();
   public registerBasicForm: FormGroup;
-  public savedUser!: IUserAuth;
+  public savedUser!: IAccountAuth;
 
   constructor(private siteStateConfig: SiteConfigState, private registerService: RegisterService) {
-    if (this.registerService.currentRegistrationUser.value !== null) {
-      this.savedUser = this.registerService.currentRegistrationUser.value; 
+    if (this.registerService.currentRegistrationAccount.value !== null) {
+      this.savedUser = this.registerService.currentRegistrationAccount.value; 
       this.registerBasicForm = this.initSavedRegisterBasicForm();
     } else {
       this.registerBasicForm = this.initRegisterBasicForm();
@@ -65,8 +65,8 @@ export class RegisterFormBasicComponent {
           Validators.required
         ]
       ),
-      age: new FormControl<string | null>(
-        this.savedUser.age || "",
+      age: new FormControl<number | null>(
+        this.savedUser.age || null,
         [
           Validators.required
         ]
@@ -116,8 +116,8 @@ export class RegisterFormBasicComponent {
           Validators.required
         ]
       ),
-      age: new FormControl<string | null>(
-        "",
+      age: new FormControl<number | null>(
+        null,
         [
           Validators.required
         ]
@@ -135,7 +135,7 @@ export class RegisterFormBasicComponent {
   public submitRegisterBasicForm(): void {
     if (this.registerBasicForm.valid) {
       const formValue = this.registerBasicForm.value;
-      const user: IUserAuth = {
+      const user: IAccountAuth = {
         login: formValue.login,
         email: formValue.email,
         name: formValue.name,

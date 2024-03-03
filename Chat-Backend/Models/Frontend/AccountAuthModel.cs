@@ -1,6 +1,6 @@
 namespace Chat_Backend.Models.Frontend
 {
-    public class AccountRegistrationModel
+    public class AccountAuthModel
     {
         public string Login { get; set; } = string.Empty;
         public string? Email { get; set; }

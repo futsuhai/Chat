@@ -6,6 +6,10 @@ import { RegisterFormBasicComponent } from '../register-form-basic/register-form
 import { RegisterFormAddictionalComponent } from '../register-form-addictional/register-form-addictional.component';
 import { RegisterFormSpecComponent } from '../register-form-spec/register-form-spec.component';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { RegisterService } from 'src/app/services/register.service';
+import { IAccountAuth } from 'src/app/models/account-auth.model';
+import { IAccount } from 'src/app/models/account.model';
 
 @Component({
   selector: 'app-register-form',
@@ -27,8 +31,17 @@ export class RegisterFormComponent {
 
   @Output() switchedForm: EventEmitter<void> = new EventEmitter<void>();
   public currentStage: number = 1;
+  public registeredAccount!: IAccountAuth;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService, private registerService: RegisterService) {
+    this.registerService.currentRegistrationAccount.subscribe({
+      next: (account: IAccountAuth | null) => {
+        if (account) {
+          this.registeredAccount = account;
+        }
+      }
+    });
+  }
 
   public switchForm(): void {
     this.switchedForm.emit();
@@ -36,7 +49,13 @@ export class RegisterFormComponent {
 
   public incrementStage(): void {
     this.currentStage++;
+    console.log(this.registeredAccount);
     if (this.currentStage === 4) {
+      this.authService.register(this.registeredAccount).subscribe({
+        next: (account: IAccount) => {
+          console.log(account);
+        }
+      });
       this.router.navigate(['/main']);
     }
   }
