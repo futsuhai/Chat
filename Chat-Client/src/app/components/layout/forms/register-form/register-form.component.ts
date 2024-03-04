@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LogoComponent } from '../../logo/logo.component';
 import { StepperComponent } from '../../stepper/stepper.component';
@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { RegisterService } from 'src/app/services/register.service';
 import { IAccountAuth } from 'src/app/models/account-auth.model';
 import { IAccount } from 'src/app/models/account.model';
+import { AuthStateService } from 'src/app/services/auth-state.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-register-form',
@@ -27,13 +29,20 @@ import { IAccount } from 'src/app/models/account.model';
   }
 })
 
-export class RegisterFormComponent {
+export class RegisterFormComponent implements OnDestroy {
 
   @Output() switchedForm: EventEmitter<void> = new EventEmitter<void>();
   public currentStage: number = 1;
   public registeredAccount!: IAccountAuth;
+  private unsubscribe$ = new Subject<void>();
 
-  constructor(private router: Router, private authService: AuthService, private registerService: RegisterService) {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private registerService: RegisterService,
+    private authStateService: AuthStateService
+  ) 
+  {
     this.registerService.currentRegistrationAccount.subscribe({
       next: (account: IAccountAuth | null) => {
         if (account) {
@@ -53,7 +62,7 @@ export class RegisterFormComponent {
     if (this.currentStage === 4) {
       this.authService.register(this.registeredAccount).subscribe({
         next: (account: IAccount) => {
-          console.log(account);
+          this.authStateService.setCurrentAccount(account);
         }
       });
       this.router.navigate(['/main']);
@@ -62,5 +71,10 @@ export class RegisterFormComponent {
 
   public decrementStage(): void {
     this.currentStage--;
+  }
+
+  public ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

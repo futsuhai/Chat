@@ -47,5 +47,21 @@ namespace Chat_Backend.Models.Options
                 RefreshToken = refreshToken
             };
         }
+
+        public string GetLoginFromJwtToken(string jwtToken)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            if (tokenHandler.ReadToken(jwtToken) is not JwtSecurityToken securityToken)
+            {
+                throw new SecurityTokenException("Invalid token.");
+            }
+
+            var loginClaim = securityToken.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name);
+            if (loginClaim != null)
+            {
+                return loginClaim.Value;
+            }
+            throw new SecurityTokenException("Login claim not found in the token.");
+        }
     }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LogoComponent } from '../../logo/logo.component';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -6,6 +6,9 @@ import { SiteConfigState } from 'src/app/utils/site-state-config';
 import { AuthService } from 'src/app/services/auth.service';
 import { IAccountAuth } from 'src/app/models/account-auth.model';
 import { IAccount } from 'src/app/models/account.model';
+import { Router } from '@angular/router';
+import { AuthStateService } from 'src/app/services/auth-state.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-login-form',
@@ -17,12 +20,18 @@ import { IAccount } from 'src/app/models/account.model';
     class: 'login-form-component'
   }
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnDestroy {
 
   @Output() switchedForm: EventEmitter<void> = new EventEmitter<void>();
   public loginForm: FormGroup;
+  private unsubscribe$ = new Subject<void>();
 
-  constructor(private siteStateConfig: SiteConfigState, private authService: AuthService) {
+  constructor(
+    private siteStateConfig: SiteConfigState,
+    private authService: AuthService,
+    private router: Router,
+    private authStateService: AuthStateService
+  ) {
     this.loginForm = this.initLoginForm();
   }
 
@@ -50,14 +59,18 @@ export class LoginFormComponent {
   public submitLoginForm(): void {
     if (this.loginForm.valid) {
       const formValue = this.loginForm.value;
-      console.log(formValue);
-      const user: IAccountAuth = {
+      const account: IAccountAuth = {
         login: formValue.login,
         password: formValue.password
       };
-      this.authService.login(user).subscribe({
+      this.authService.login(account).subscribe({
         next: (account: IAccount) => {
-          console.log("Logged successfully", account);
+          this.authStateService.setCurrentAccount(account);
+          this.router.navigate(['/main']);
+        },
+        error: () => {
+          this.login?.setErrors({ unauthorized: true });
+          this.password?.setErrors({ unauthorized: true });
         }
       });
     }
@@ -77,5 +90,10 @@ export class LoginFormComponent {
 
   public get remember(): AbstractControl | null {
     return this.loginForm.get("remember");
+  }
+
+  public ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

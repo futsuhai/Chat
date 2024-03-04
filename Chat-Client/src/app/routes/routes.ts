@@ -6,7 +6,12 @@ import { MainComponent } from "../components/pages/main/main.component";
 export const APP_ROUTES: Routes = [
     {
         path: '',
-        title: 'Auth',
+        title: 'auth',
+        component: AuthPageComponent
+    },
+    {
+        path: 'auth',
+        title: 'auth',
         component: AuthPageComponent
     },
     {
