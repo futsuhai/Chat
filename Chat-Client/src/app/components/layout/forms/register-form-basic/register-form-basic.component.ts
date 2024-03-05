@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SiteConfigState } from 'src/app/utils/site-state-config';
 import { RegisterService } from 'src/app/services/register.service';
 import { IAccountAuth } from 'src/app/models/account-auth.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { IError } from 'src/app/models/error.model';
+import { map, switchMap, timer } from 'rxjs';
 
 @Component({
   selector: 'app-register-form-basic',
@@ -18,16 +21,22 @@ import { IAccountAuth } from 'src/app/models/account-auth.model';
 export class RegisterFormBasicComponent {
 
   @Output() incrementStage: EventEmitter<void> = new EventEmitter<void>();
-  public registerBasicForm: FormGroup;
+  public registerBasicForm!: FormGroup;
   public savedUser!: IAccountAuth;
 
-  constructor(private siteStateConfig: SiteConfigState, private registerService: RegisterService) {
+  constructor(private siteStateConfig: SiteConfigState, private registerService: RegisterService, private authService: AuthService, private formBuilder: FormBuilder) {
     if (this.registerService.currentRegistrationAccount.value !== null) {
-      this.savedUser = this.registerService.currentRegistrationAccount.value; 
+      this.savedUser = this.registerService.currentRegistrationAccount.value;
       this.registerBasicForm = this.initSavedRegisterBasicForm();
     } else {
+      //this.initTest();
       this.registerBasicForm = this.initRegisterBasicForm();
     }
+    //this.authService.registerValidation("Admin").subscribe({
+      //next: (error: IError) => {
+       // console.log(error);
+      //}
+    //});
   }
 
   private initSavedRegisterBasicForm(): FormGroup {
@@ -81,6 +90,58 @@ export class RegisterFormBasicComponent {
     });
   }
 
+  private initTest(): void {
+    this.registerBasicForm = this.formBuilder.group({
+      login: new FormControl<string | null>(
+        "",
+        [
+          Validators.required,
+          Validators.minLength(this.siteStateConfig.MIN_LENGHT_LOGIN),
+          Validators.maxLength(this.siteStateConfig.MAX_LENGHT_LOGIN),
+          this.registerValidation
+        ],
+      ),
+      email: new FormControl<string | null>(
+        "",
+        [
+          Validators.required,
+          Validators.email
+        ]
+      ),
+      name: new FormControl<string | null>(
+        "",
+        [
+          Validators.required
+        ]
+      ),
+      surname: new FormControl<string | null>(
+        "",
+        [
+          Validators.required
+        ]
+      ),
+      city: new FormControl<string | null>(
+        "",
+        [
+          Validators.required
+        ]
+      ),
+      age: new FormControl<number | null>(
+        null,
+        [
+          Validators.required
+        ]
+      ),
+      password: new FormControl<string | null>(
+        "",
+        [
+          Validators.required,
+          Validators.pattern(this.siteStateConfig.REGEXP)
+        ]
+      )
+    });
+  }
+
   private initRegisterBasicForm(): FormGroup {
     return new FormGroup({
       login: new FormControl<string | null>(
@@ -88,8 +149,9 @@ export class RegisterFormBasicComponent {
         [
           Validators.required,
           Validators.minLength(this.siteStateConfig.MIN_LENGHT_LOGIN),
-          Validators.maxLength(this.siteStateConfig.MAX_LENGHT_LOGIN)
-        ]
+          Validators.maxLength(this.siteStateConfig.MAX_LENGHT_LOGIN),
+          this.registerValidation
+        ],
       ),
       email: new FormControl<string | null>(
         "",
@@ -135,7 +197,7 @@ export class RegisterFormBasicComponent {
   public submitRegisterBasicForm(): void {
     if (this.registerBasicForm.valid) {
       const formValue = this.registerBasicForm.value;
-      const user: IAccountAuth = {
+      const account: IAccountAuth = {
         login: formValue.login,
         email: formValue.email,
         name: formValue.name,
@@ -144,9 +206,28 @@ export class RegisterFormBasicComponent {
         age: formValue.age,
         password: formValue.password
       };
-      this.registerService.updateRegistrationUser(user);
+      this.registerService.updateRegistrationUser(account);
       this.incrementStage.emit();
     }
+  }
+
+  public registerValidation(): AsyncValidatorFn {
+    return (control: AbstractControl) => {
+      return timer(500).pipe(
+        switchMap(() =>
+          this.authService.registerValidation(control.value).pipe(
+            map((error: IError) => {
+              if (error.type === 'Login') {
+                console.log(error);
+                return { duplicate: true };
+              } else {
+                return null;
+              }
+            })
+          )
+        )
+      );
+    };
   }
 
   public get login(): AbstractControl | null {

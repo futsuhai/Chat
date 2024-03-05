@@ -1,4 +1,5 @@
 using Chat_Backend.Models.Backend;
+using Chat_Backend.Models.Frontend;
 using Chat_Backend.Models.Options;
 using Chat_Backend.Repositories.AccountRepository;
 
@@ -36,6 +37,29 @@ namespace Chat_Backend.Services.AccountService
             account.Tokens = tokens;
             await UpdateAsync(account.Id, account);
             return account.Tokens;
+        }
+
+        public async Task<Error> RegistrationValidation(string control)
+        {
+            var accounts = await _accountRepository.GetAllAsync();
+            Error validationError = new();
+            if (accounts.Any(x => x.Login == control))
+            {
+                validationError = new Error
+                {
+                    Type = "Login",
+                    Message = "This login is already in use."
+                };
+            }
+            if (accounts.Any(x => x.Email == control))
+            {
+                validationError = new Error
+                {
+                    Type = "Email",
+                    Message = "This email is already registered."
+                };
+            }
+            return validationError;
         }
 
         public async Task<IList<Account>> GetAllAsync() =>

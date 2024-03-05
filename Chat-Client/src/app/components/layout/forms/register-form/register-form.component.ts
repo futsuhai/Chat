@@ -58,14 +58,13 @@ export class RegisterFormComponent implements OnDestroy {
 
   public incrementStage(): void {
     this.currentStage++;
-    console.log(this.registeredAccount);
     if (this.currentStage === 4) {
       this.authService.register(this.registeredAccount).subscribe({
         next: (account: IAccount) => {
           this.authStateService.setCurrentAccount(account);
+          this.router.navigate(['/main']);
         }
       });
-      this.router.navigate(['/main']);
     }
   }
 

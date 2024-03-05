@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IAccount } from '../models/account.model';
+import { ITokens } from '../models/tokens.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,12 @@ export class AuthStateService {
   public setCurrentAccount(account: IAccount): void {
     this.currentAccount.next(account);
     localStorage.setItem('currentAccount', JSON.stringify(account));
+  }
+
+  public refreshTokens(tokens: ITokens): void {
+    const currentAccount = this.getCurrentAccount();
+    currentAccount.tokens = tokens;
+    this.setCurrentAccount(currentAccount);
   }
 
   public getCurrentAccount(): IAccount {

@@ -111,5 +111,26 @@ namespace Chat_Backend.Controllers
                 return StatusCode(500, "Internal server error"); // Спросить что лучше вернуть?
             }
         }
+
+        [HttpGet("ValidateRegistration/{control}")]
+        public async Task<IActionResult> ValidateRegistration(string control)
+        {
+            try
+            {
+                var validationError = await _accountService.RegistrationValidation(control);
+                if (validationError != null)
+                {
+                    _logger.LogError("Error occurred during user registration: incorrect Login Or Email");
+                    return Ok(validationError);
+                }
+                _logger.LogInformation("Validation success");
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred during validating:");
+                return StatusCode(500, "Internal server error"); // Спросить что лучше вернуть?
+            }
+        }
     }
 }
