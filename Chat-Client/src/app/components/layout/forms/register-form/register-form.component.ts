@@ -57,8 +57,7 @@ export class RegisterFormComponent implements OnDestroy {
   }
 
   public incrementStage(): void {
-    this.currentStage++;
-    if (this.currentStage === 4) {
+    if (this.currentStage === 3) {
       this.authService.register(this.registeredAccount).subscribe({
         next: (account: IAccount) => {
           this.authStateService.setCurrentAccount(account);
@@ -66,6 +65,7 @@ export class RegisterFormComponent implements OnDestroy {
         }
       });
     }
+    this.currentStage++;
   }
 
   public decrementStage(): void {

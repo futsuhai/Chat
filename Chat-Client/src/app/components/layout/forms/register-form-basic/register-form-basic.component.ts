@@ -36,7 +36,7 @@ export class RegisterFormBasicComponent {
   private initSavedRegisterBasicForm(): void {
     this.registerBasicForm = this.formBuilder.group({
       login: new FormControl<string | null>(
-        "",
+        this.savedUser.login || "",
         [
           Validators.required,
           Validators.minLength(this.siteStateConfig.MIN_LENGHT_LOGIN),
@@ -45,7 +45,7 @@ export class RegisterFormBasicComponent {
         this.registerValidation()
       ),
       email: new FormControl<string | null>(
-        "",
+        this.savedUser.email || "",
         [
           Validators.required,
           Validators.email
@@ -53,31 +53,31 @@ export class RegisterFormBasicComponent {
         this.registerValidation()
       ),
       name: new FormControl<string | null>(
-        "",
+        this.savedUser.name || "",
         [
           Validators.required
         ]
       ),
       surname: new FormControl<string | null>(
-        "",
+        this.savedUser.surname || "",
         [
           Validators.required
         ]
       ),
       city: new FormControl<string | null>(
-        "",
+        this.savedUser.city || "",
         [
           Validators.required
         ]
       ),
       age: new FormControl<number | null>(
-        null,
+        this.savedUser.age || null,
         [
           Validators.required
         ]
       ),
       password: new FormControl<string | null>(
-        "",
+        this.savedUser.password || "",
         [
           Validators.required,
           Validators.pattern(this.siteStateConfig.REGEXP)

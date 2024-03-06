@@ -21,6 +21,12 @@
                     <ng-container *ngIf="login?.hasError('duplicateLogin')">
                         Duplicate login
                     </ng-container>
+                    <ng-container *ngIf="login?.hasError('minlength')">
+                        Minimum length of login is 4 characters
+                    </ng-container>
+                    <ng-container *ngIf="login?.hasError('maxlength')">
+                        Maximum length of login is 12 characters
+                    </ng-container>
             </span>
         </div>
         <div class="form-group">
@@ -38,6 +44,9 @@
                     </ng-container>
                     <ng-container *ngIf="email?.hasError('duplicateEmail')">
                         Duplicate email
+                    </ng-container>
+                    <ng-container *ngIf="email?.hasError('email')">
+                        Incorrenc email
                     </ng-container>
             </span>
         </div>
@@ -85,6 +94,9 @@
                 class="form-group__alert">
                     <ng-container *ngIf="password?.hasError('required')">
                         Field is required
+                    </ng-container>
+                    <ng-container *ngIf="password?.hasError('pattern')">
+                        Password is incorrect
                     </ng-container>
             </span>
         </div>
