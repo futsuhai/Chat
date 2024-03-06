@@ -65,35 +65,3 @@ $xxl: 1400px;
         @content
     }
 };
-
-// Double range between breakpoints
-
-// 768px-1200px
-@mixin between_md-xl {
-    @media screen and (min-width: $md ) and (max-width: $xl) {
-        @content
-    }
-};
-
-// 0px-768px
-@mixin between_xs-md {
-    @media screen and (min-width: $xs ) and (max-width: $md) {
-        @content
-    }
-};
-
-// Additionally  breakpoints
-
-// header
-@mixin header-between-lg-xl {
-    @media screen and (max-width: $header-between-lg-xl) {
-        @content
-    }
-};
-
-// quality
-@mixin quality-between-md-xs {
-    @media screen and (max-width: $quality-between-md-xs) {
-        @content
-    }
-};

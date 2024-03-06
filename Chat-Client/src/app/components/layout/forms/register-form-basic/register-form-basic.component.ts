@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SiteConfigState } from 'src/app/utils/site-state-config';
+import { SiteConfigState } from 'src/app/states/site-config.state';
 import { RegisterService } from 'src/app/services/register.service';
 import { IAccountAuth } from 'src/app/models/account-auth.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -24,9 +24,14 @@ export class RegisterFormBasicComponent {
   public registerBasicForm!: FormGroup;
   public savedUser!: IAccountAuth;
 
-  constructor(private siteStateConfig: SiteConfigState, private registerService: RegisterService, private authService: AuthService, private formBuilder: FormBuilder) {
-    if (this.registerService.currentRegistrationAccount.value !== null) {
-      this.savedUser = this.registerService.currentRegistrationAccount.value;
+  constructor(
+    private siteConfigState: SiteConfigState,
+    private registerService: RegisterService,
+    private authService: AuthService,
+    private formBuilder: FormBuilder
+  ) {
+    if (this.registerService.currentRegistrationAccount$.value !== null) {
+      this.savedUser = this.registerService.currentRegistrationAccount$.value;
       this.initSavedRegisterBasicForm();
     } else {
       this.initRegisterBasicForm();
@@ -39,8 +44,8 @@ export class RegisterFormBasicComponent {
         this.savedUser.login || "",
         [
           Validators.required,
-          Validators.minLength(this.siteStateConfig.MIN_LENGHT_LOGIN),
-          Validators.maxLength(this.siteStateConfig.MAX_LENGHT_LOGIN),
+          Validators.minLength(this.siteConfigState.MIN_LENGHT_LOGIN),
+          Validators.maxLength(this.siteConfigState.MAX_LENGHT_LOGIN),
         ],
         this.registerValidation()
       ),
@@ -80,7 +85,7 @@ export class RegisterFormBasicComponent {
         this.savedUser.password || "",
         [
           Validators.required,
-          Validators.pattern(this.siteStateConfig.REGEXP)
+          Validators.pattern(this.siteConfigState.REGEXP)
         ]
       )
     });
@@ -92,8 +97,8 @@ export class RegisterFormBasicComponent {
         "",
         [
           Validators.required,
-          Validators.minLength(this.siteStateConfig.MIN_LENGHT_LOGIN),
-          Validators.maxLength(this.siteStateConfig.MAX_LENGHT_LOGIN),
+          Validators.minLength(this.siteConfigState.MIN_LENGHT_LOGIN),
+          Validators.maxLength(this.siteConfigState.MAX_LENGHT_LOGIN),
         ],
         this.registerValidation()
       ),
@@ -133,7 +138,7 @@ export class RegisterFormBasicComponent {
         "",
         [
           Validators.required,
-          Validators.pattern(this.siteStateConfig.REGEXP)
+          Validators.pattern(this.siteConfigState.REGEXP)
         ]
       )
     });

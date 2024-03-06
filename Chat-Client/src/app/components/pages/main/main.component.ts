@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthStateService } from 'src/app/services/auth-state.service';
+import { AuthStateService } from 'src/app/states/auth.state';
 import { IAccount } from 'src/app/models/account.model';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';

@@ -22,8 +22,8 @@ export class RegisterFormAddictionalComponent {
   public savedUser!: IAccountAuth;
 
   constructor(private registerService: RegisterService) {
-    if (this.registerService.currentRegistrationAccount.value !== null) {
-      this.savedUser = this.registerService.currentRegistrationAccount.value;
+    if (this.registerService.currentRegistrationAccount$.value !== null) {
+      this.savedUser = this.registerService.currentRegistrationAccount$.value;
       this.registerAddictionalForm = this.initSavedRegisterAddictionalForm();
     } else {
       this.registerAddictionalForm = this.initRegisterAddictionalForm();

@@ -2,13 +2,13 @@ import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LogoComponent } from '../../logo/logo.component';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SiteConfigState } from 'src/app/utils/site-state-config';
 import { AuthService } from 'src/app/services/auth.service';
 import { IAccountAuth } from 'src/app/models/account-auth.model';
 import { IAccount } from 'src/app/models/account.model';
 import { Router } from '@angular/router';
-import { AuthStateService } from 'src/app/services/auth-state.service';
+import { AuthStateService } from 'src/app/states/auth.state';
 import { Subject } from 'rxjs';
+import { SiteConfigState } from 'src/app/states/site-config.state';
 
 @Component({
   selector: 'app-login-form',
@@ -27,7 +27,7 @@ export class LoginFormComponent implements OnDestroy {
   private unsubscribe$ = new Subject<void>();
 
   constructor(
-    private siteStateConfig: SiteConfigState,
+    private siteConfigState: SiteConfigState,
     private authService: AuthService,
     private router: Router,
     private authStateService: AuthStateService
@@ -41,15 +41,15 @@ export class LoginFormComponent implements OnDestroy {
         "",
         [
           Validators.required,
-          Validators.minLength(this.siteStateConfig.MIN_LENGHT_LOGIN),
-          Validators.maxLength(this.siteStateConfig.MAX_LENGHT_LOGIN)
+          Validators.minLength(this.siteConfigState.MIN_LENGHT_LOGIN),
+          Validators.maxLength(this.siteConfigState.MAX_LENGHT_LOGIN)
         ]
       ),
       password: new FormControl<string | null>(
         "",
         [
           Validators.required,
-          Validators.pattern(this.siteStateConfig.REGEXP)
+          Validators.pattern(this.siteConfigState.REGEXP)
         ]
       ),
       remember: new FormControl<boolean | null>(false)

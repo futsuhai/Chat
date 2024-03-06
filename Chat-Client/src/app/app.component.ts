@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, AuthPageComponent, RouterModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
   host: {
     class: 'app-root-component'
   }

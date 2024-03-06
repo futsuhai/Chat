@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { SiteConfigState } from 'src/app/utils/site-state-config';
+import { SiteConfigState } from 'src/app/states/site-config.state';
 import { RegisterService } from 'src/app/services/register.service';
 import { IAccountAuth } from 'src/app/models/account-auth.model';
 
@@ -24,10 +24,10 @@ export class RegisterFormSpecComponent {
   public specializations: string[] = [];
   public savedUser!: IAccountAuth;
 
-  constructor(private siteStateConfig: SiteConfigState, private registerService: RegisterService, private fb: FormBuilder) {
-    this.specializations = this.siteStateConfig.Specializations;
-    if (this.registerService.currentRegistrationAccount.value !== null) {
-      this.savedUser = this.registerService.currentRegistrationAccount.value; 
+  constructor(private siteConfigState: SiteConfigState, private registerService: RegisterService, private fb: FormBuilder) {
+    this.specializations = this.siteConfigState.Specializations;
+    if (this.registerService.currentRegistrationAccount$.value !== null) {
+      this.savedUser = this.registerService.currentRegistrationAccount$.value; 
       this.registerSpecForm = this.initSavedRegisterSpecForm();
     } else {
       this.registerSpecForm = this.initRegisterSpecForm();

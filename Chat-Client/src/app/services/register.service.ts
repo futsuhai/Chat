@@ -7,11 +7,11 @@ import { IAccountAuth } from '../models/account-auth.model';
 })
 export class RegisterService {
 
-  public currentRegistrationAccount = new BehaviorSubject<IAccountAuth | null>(null);
+  public currentRegistrationAccount$ = new BehaviorSubject<IAccountAuth | null>(null);
 
   public updateRegistrationUser(updates: IAccountAuth): void {
-    const currentUser = this.currentRegistrationAccount.value;
-    const updatedUser: IAccountAuth = { ...currentUser, ...updates };
-    this.currentRegistrationAccount.next(updatedUser);
+    const currentAccount = this.currentRegistrationAccount$.value;
+    const updatedAccount: IAccountAuth = { ...currentAccount, ...updates };
+    this.currentRegistrationAccount$.next(updatedAccount);
   }
 }

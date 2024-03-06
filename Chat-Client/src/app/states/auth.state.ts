@@ -8,16 +8,20 @@ import { ITokens } from '../models/tokens.model';
 })
 export class AuthStateService {
 
-  public currentAccount = new BehaviorSubject<IAccount | null>(null);
+  get storedAccountLink(): string {
+    return `storedAccountLink`;
+  }
+
+  public currentAccount$ = new BehaviorSubject<IAccount | null>(null);
 
   constructor() {
-    const storedAccount = localStorage.getItem('currentAccount');
-    this.currentAccount = new BehaviorSubject<IAccount | null>(storedAccount ? JSON.parse(storedAccount) : null);
+    const storedAccount = localStorage.getItem(this.storedAccountLink);
+    this.currentAccount$ = new BehaviorSubject<IAccount | null>(storedAccount ? JSON.parse(storedAccount) : null);
   }
 
   public setCurrentAccount(account: IAccount): void {
-    this.currentAccount.next(account);
-    localStorage.setItem('currentAccount', JSON.stringify(account));
+    this.currentAccount$.next(account);
+    localStorage.setItem(this.storedAccountLink, JSON.stringify(account));
   }
 
   public refreshTokens(tokens: ITokens): void {
@@ -27,12 +31,12 @@ export class AuthStateService {
   }
 
   public getCurrentAccount(): IAccount {
-    const storedAccount = localStorage.getItem('currentAccount');
+    const storedAccount = localStorage.getItem(this.storedAccountLink);
     return storedAccount ? JSON.parse(storedAccount) : null;
   }
 
   public logout(): void {
-    localStorage.removeItem('currentAccount');
-    this.currentAccount.next(null);
+    localStorage.removeItem(this.storedAccountLink);
+    this.currentAccount$.next(null);
   }
 }
