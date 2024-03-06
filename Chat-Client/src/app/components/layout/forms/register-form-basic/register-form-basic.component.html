@@ -18,8 +18,8 @@
                     <ng-container *ngIf="login?.hasError('required')">
                         Field is required
                     </ng-container>
-                    <ng-container *ngIf="login?.hasError('duplicate')">
-                        Invalid login
+                    <ng-container *ngIf="login?.hasError('duplicateLogin')">
+                        Duplicate login
                     </ng-container>
             </span>
         </div>
@@ -35,6 +35,9 @@
                 class="form-group__alert">
                     <ng-container *ngIf="email?.hasError('required')">
                         Field is required
+                    </ng-container>
+                    <ng-container *ngIf="email?.hasError('duplicateEmail')">
+                        Duplicate email
                     </ng-container>
             </span>
         </div>

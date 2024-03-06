@@ -27,70 +27,13 @@ export class RegisterFormBasicComponent {
   constructor(private siteStateConfig: SiteConfigState, private registerService: RegisterService, private authService: AuthService, private formBuilder: FormBuilder) {
     if (this.registerService.currentRegistrationAccount.value !== null) {
       this.savedUser = this.registerService.currentRegistrationAccount.value;
-      this.registerBasicForm = this.initSavedRegisterBasicForm();
+      this.initSavedRegisterBasicForm();
     } else {
-      //this.initTest();
-      this.registerBasicForm = this.initRegisterBasicForm();
+      this.initRegisterBasicForm();
     }
-    //this.authService.registerValidation("Admin").subscribe({
-      //next: (error: IError) => {
-       // console.log(error);
-      //}
-    //});
   }
 
-  private initSavedRegisterBasicForm(): FormGroup {
-    return new FormGroup({
-      login: new FormControl<string | null>(
-        this.savedUser.login || "",
-        [
-          Validators.required,
-          Validators.minLength(this.siteStateConfig.MIN_LENGHT_LOGIN),
-          Validators.maxLength(this.siteStateConfig.MAX_LENGHT_LOGIN)
-        ]
-      ),
-      email: new FormControl<string | null>(
-        this.savedUser.email || "",
-        [
-          Validators.required,
-          Validators.email
-        ]
-      ),
-      name: new FormControl<string | null>(
-        this.savedUser.name || "",
-        [
-          Validators.required
-        ]
-      ),
-      surname: new FormControl<string | null>(
-        this.savedUser.surname || "",
-        [
-          Validators.required
-        ]
-      ),
-      city: new FormControl<string | null>(
-        this.savedUser.city || "",
-        [
-          Validators.required
-        ]
-      ),
-      age: new FormControl<number | null>(
-        this.savedUser.age || null,
-        [
-          Validators.required
-        ]
-      ),
-      password: new FormControl<string | null>(
-        this.savedUser.password || "",
-        [
-          Validators.required,
-          Validators.pattern(this.siteStateConfig.REGEXP)
-        ]
-      )
-    });
-  }
-
-  private initTest(): void {
+  private initSavedRegisterBasicForm(): void {
     this.registerBasicForm = this.formBuilder.group({
       login: new FormControl<string | null>(
         "",
@@ -98,15 +41,16 @@ export class RegisterFormBasicComponent {
           Validators.required,
           Validators.minLength(this.siteStateConfig.MIN_LENGHT_LOGIN),
           Validators.maxLength(this.siteStateConfig.MAX_LENGHT_LOGIN),
-          this.registerValidation
         ],
+        this.registerValidation()
       ),
       email: new FormControl<string | null>(
         "",
         [
           Validators.required,
           Validators.email
-        ]
+        ],
+        this.registerValidation()
       ),
       name: new FormControl<string | null>(
         "",
@@ -142,23 +86,24 @@ export class RegisterFormBasicComponent {
     });
   }
 
-  private initRegisterBasicForm(): FormGroup {
-    return new FormGroup({
+  private initRegisterBasicForm(): void {
+    this.registerBasicForm = this.formBuilder.group({
       login: new FormControl<string | null>(
         "",
         [
           Validators.required,
           Validators.minLength(this.siteStateConfig.MIN_LENGHT_LOGIN),
           Validators.maxLength(this.siteStateConfig.MAX_LENGHT_LOGIN),
-          this.registerValidation
         ],
+        this.registerValidation()
       ),
       email: new FormControl<string | null>(
         "",
         [
           Validators.required,
           Validators.email
-        ]
+        ],
+        this.registerValidation()
       ),
       name: new FormControl<string | null>(
         "",
@@ -217,12 +162,13 @@ export class RegisterFormBasicComponent {
         switchMap(() =>
           this.authService.registerValidation(control.value).pipe(
             map((error: IError) => {
-              if (error.type === 'Login') {
-                console.log(error);
-                return { duplicate: true };
-              } else {
-                return null;
+              if (error.type === "Login") {
+                return { duplicateLogin: true };
               }
+              if (error.type === "Email") {
+                return { duplicateEmail: true };
+              }
+              return null;
             })
           )
         )
