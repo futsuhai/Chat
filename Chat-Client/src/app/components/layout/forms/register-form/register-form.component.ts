@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { RegisterService } from 'src/app/services/register.service';
 import { IAccountAuth } from 'src/app/models/account-auth.model';
 import { IAccount } from 'src/app/models/account.model';
-import { AuthStateService } from 'src/app/states/auth.state';
+import { AuthState } from 'src/app/states/auth.state';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -40,7 +40,7 @@ export class RegisterFormComponent implements OnDestroy {
     private router: Router,
     private authService: AuthService,
     private registerService: RegisterService,
-    private authStateService: AuthStateService
+    private authState: AuthState
   ) {
     this.registerService.currentRegistrationAccount$.subscribe({
       next: (account: IAccountAuth | null) => {
@@ -59,7 +59,7 @@ export class RegisterFormComponent implements OnDestroy {
     if (this.currentStage === 3) {
       this.authService.register(this.registeredAccount).subscribe({
         next: (account: IAccount) => {
-          this.authStateService.setCurrentAccount(account);
+          this.authState.setCurrentAccount(account);
           this.router.navigate(['/main']);
         }
       });

@@ -11,7 +11,7 @@ export const APP_ROUTES: Routes = [
     },
     {
         path: 'auth',
-        title: 'auth',
+        title: 'Auth',
         component: AuthPageComponent
     },
     {

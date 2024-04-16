@@ -14,12 +14,15 @@ import { CommonModule } from '@angular/common';
 export class StepperComponent implements OnChanges {
 
   @Input() currentStage: number = 1;
-  activeSteps: boolean[] = [true, false, false];
+  public activeSteps: boolean[] = [true, false, false];
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['currentStage'] && !changes['currentStage'].firstChange) {
-      const prevStage = changes['currentStage'].previousValue;
-      this.activeSteps[prevStage - 1] = true;
+      this.activeSteps.fill(false);
+      
+      for (let i = 0; i < this.currentStage; i++) {
+        this.activeSteps[i] = true;
+      }
     }
   }
 

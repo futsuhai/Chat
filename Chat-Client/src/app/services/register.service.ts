@@ -9,7 +9,7 @@ export class RegisterService {
 
   public currentRegistrationAccount$ = new BehaviorSubject<IAccountAuth | null>(null);
 
-  public updateRegistrationUser(updates: IAccountAuth): void {
+  public updateRegistrationAccount(updates: IAccountAuth): void {
     const currentAccount = this.currentRegistrationAccount$.value;
     const updatedAccount: IAccountAuth = { ...currentAccount, ...updates };
     this.currentRegistrationAccount$.next(updatedAccount);

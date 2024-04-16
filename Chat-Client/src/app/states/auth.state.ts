@@ -6,7 +6,7 @@ import { ITokens } from '../models/tokens.model';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthStateService {
+export class AuthState {
 
   get storedAccountLink(): string {
     return `storedAccountLink`;

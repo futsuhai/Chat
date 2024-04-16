@@ -6,7 +6,7 @@ import { RegisterService } from 'src/app/services/register.service';
 import { IAccountAuth } from 'src/app/models/account-auth.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { IError } from 'src/app/models/error.model';
-import { map, switchMap, timer } from 'rxjs';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-register-form-basic',
@@ -22,7 +22,6 @@ export class RegisterFormBasicComponent {
 
   @Output() incrementStage: EventEmitter<void> = new EventEmitter<void>();
   public registerBasicForm!: FormGroup;
-  public savedUser!: IAccountAuth;
 
   constructor(
     private siteConfigState: SiteConfigState,
@@ -30,18 +29,13 @@ export class RegisterFormBasicComponent {
     private authService: AuthService,
     private formBuilder: FormBuilder
   ) {
-    if (this.registerService.currentRegistrationAccount$.value !== null) {
-      this.savedUser = this.registerService.currentRegistrationAccount$.value;
-      this.initSavedRegisterBasicForm();
-    } else {
-      this.initRegisterBasicForm();
-    }
+      this.initRegisterBasicForm(this.registerService.currentRegistrationAccount$.value);
   }
 
-  private initSavedRegisterBasicForm(): void {
+  private initRegisterBasicForm(savedAccount: IAccountAuth | null): void {
     this.registerBasicForm = this.formBuilder.group({
       login: new FormControl<string | null>(
-        this.savedUser.login || "",
+        savedAccount?.login ? savedAccount.login : "",
         [
           Validators.required,
           Validators.minLength(this.siteConfigState.MIN_LENGHT_LOGIN),
@@ -50,7 +44,7 @@ export class RegisterFormBasicComponent {
         this.registerValidation()
       ),
       email: new FormControl<string | null>(
-        this.savedUser.email || "",
+        savedAccount?.email ? savedAccount.email : "",
         [
           Validators.required,
           Validators.email
@@ -58,84 +52,31 @@ export class RegisterFormBasicComponent {
         this.registerValidation()
       ),
       name: new FormControl<string | null>(
-        this.savedUser.name || "",
+        savedAccount?.name ? savedAccount.name : "",
         [
           Validators.required
         ]
       ),
       surname: new FormControl<string | null>(
-        this.savedUser.surname || "",
+        savedAccount?.surname ? savedAccount.surname : "",
         [
           Validators.required
         ]
       ),
       city: new FormControl<string | null>(
-        this.savedUser.city || "",
+        savedAccount?.city ? savedAccount.city : "",
         [
           Validators.required
         ]
       ),
       age: new FormControl<number | null>(
-        this.savedUser.age || null,
+        savedAccount?.age ? savedAccount.age : null,
         [
           Validators.required
         ]
       ),
       password: new FormControl<string | null>(
-        this.savedUser.password || "",
-        [
-          Validators.required,
-          Validators.pattern(this.siteConfigState.REGEXP)
-        ]
-      )
-    });
-  }
-
-  private initRegisterBasicForm(): void {
-    this.registerBasicForm = this.formBuilder.group({
-      login: new FormControl<string | null>(
-        "",
-        [
-          Validators.required,
-          Validators.minLength(this.siteConfigState.MIN_LENGHT_LOGIN),
-          Validators.maxLength(this.siteConfigState.MAX_LENGHT_LOGIN),
-        ],
-        this.registerValidation()
-      ),
-      email: new FormControl<string | null>(
-        "",
-        [
-          Validators.required,
-          Validators.email
-        ],
-        this.registerValidation()
-      ),
-      name: new FormControl<string | null>(
-        "",
-        [
-          Validators.required
-        ]
-      ),
-      surname: new FormControl<string | null>(
-        "",
-        [
-          Validators.required
-        ]
-      ),
-      city: new FormControl<string | null>(
-        "",
-        [
-          Validators.required
-        ]
-      ),
-      age: new FormControl<number | null>(
-        null,
-        [
-          Validators.required
-        ]
-      ),
-      password: new FormControl<string | null>(
-        "",
+        savedAccount?.password ? savedAccount.password : "",
         [
           Validators.required,
           Validators.pattern(this.siteConfigState.REGEXP)
@@ -156,27 +97,23 @@ export class RegisterFormBasicComponent {
         age: formValue.age,
         password: formValue.password
       };
-      this.registerService.updateRegistrationUser(account);
+      this.registerService.updateRegistrationAccount(account);
       this.incrementStage.emit();
     }
   }
 
   public registerValidation(): AsyncValidatorFn {
     return (control: AbstractControl) => {
-      return timer(500).pipe(
-        switchMap(() =>
-          this.authService.registerValidation(control.value).pipe(
-            map((error: IError) => {
-              if (error.type === "Login") {
-                return { duplicateLogin: true };
-              }
-              if (error.type === "Email") {
-                return { duplicateEmail: true };
-              }
-              return null;
-            })
-          )
-        )
+      return this.authService.registerValidation(control.value).pipe(
+        map((error: IError) => {
+          if (error.type === "Login") {
+            return { duplicateLogin: true };
+          }
+          if (error.type === "Email") {
+            return { duplicateEmail: true };
+          }
+          return null;
+        })
       );
     };
   }

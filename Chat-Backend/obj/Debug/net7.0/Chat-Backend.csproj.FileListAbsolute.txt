@@ -98,9 +98,10 @@ C:\Users\futsuhai\Documents\GitHub\Chat\Chat\Chat-Backend\obj\Debug\net7.0\stati
 C:\Users\futsuhai\Documents\GitHub\Chat\Chat\Chat-Backend\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\futsuhai\Documents\GitHub\Chat\Chat\Chat-Backend\obj\Debug\net7.0\staticwebassets.development.json
 C:\Users\futsuhai\Documents\GitHub\Chat\Chat\Chat-Backend\obj\Debug\net7.0\scopedcss\bundle\Chat-Backend.styles.css
-C:\Users\futsuhai\Documents\GitHub\Chat\Chat\Chat-Backend\obj\Debug\net7.0\Chat-Backend.csproj.CopyComplete
 C:\Users\futsuhai\Documents\GitHub\Chat\Chat\Chat-Backend\obj\Debug\net7.0\Chat-Backend.dll
 C:\Users\futsuhai\Documents\GitHub\Chat\Chat\Chat-Backend\obj\Debug\net7.0\refint\Chat-Backend.dll
 C:\Users\futsuhai\Documents\GitHub\Chat\Chat\Chat-Backend\obj\Debug\net7.0\Chat-Backend.pdb
 C:\Users\futsuhai\Documents\GitHub\Chat\Chat\Chat-Backend\obj\Debug\net7.0\Chat-Backend.genruntimeconfig.cache
 C:\Users\futsuhai\Documents\GitHub\Chat\Chat\Chat-Backend\obj\Debug\net7.0\ref\Chat-Backend.dll
+C:\Users\futsuhai\Documents\GitHub\Chat\Chat\Chat-Backend\obj\Debug\net7.0\Chat-Backend.sourcelink.json
+C:\Users\futsuhai\Documents\GitHub\Chat\Chat\Chat-Backend\obj\Debug\net7.0\Chat-Bac.CD928FBD.Up2Date

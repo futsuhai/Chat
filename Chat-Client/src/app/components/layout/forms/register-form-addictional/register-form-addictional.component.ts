@@ -65,7 +65,7 @@ export class RegisterFormAddictionalComponent {
         bio: formValue.bio,
         socialMediaUrls: socialMediaUrls
       };
-      this.registerService.updateRegistrationUser(user);
+      this.registerService.updateRegistrationAccount(user);
       this.incrementStage.emit();
     }
   }

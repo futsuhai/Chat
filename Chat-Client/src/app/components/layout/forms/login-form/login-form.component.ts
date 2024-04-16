@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { IAccountAuth } from 'src/app/models/account-auth.model';
 import { IAccount } from 'src/app/models/account.model';
 import { Router } from '@angular/router';
-import { AuthStateService } from 'src/app/states/auth.state';
+import { AuthState } from 'src/app/states/auth.state';
 import { Subject } from 'rxjs';
 import { SiteConfigState } from 'src/app/states/site-config.state';
 
@@ -30,7 +30,7 @@ export class LoginFormComponent implements OnDestroy {
     private siteConfigState: SiteConfigState,
     private authService: AuthService,
     private router: Router,
-    private authStateService: AuthStateService
+    private authState: AuthState
   ) {
     this.loginForm = this.initLoginForm();
   }
@@ -65,7 +65,7 @@ export class LoginFormComponent implements OnDestroy {
       };
       this.authService.login(account).subscribe({
         next: (account: IAccount) => {
-          this.authStateService.setCurrentAccount(account);
+          this.authState.setCurrentAccount(account);
           this.router.navigate(['/main']);
         },
         error: () => {

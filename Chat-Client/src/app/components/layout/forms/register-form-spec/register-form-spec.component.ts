@@ -64,7 +64,7 @@ export class RegisterFormSpecComponent {
       const user: IAccountAuth = {
         specializations: specArray
       };
-      this.registerService.updateRegistrationUser(user);
+      this.registerService.updateRegistrationAccount(user);
       this.incrementStage.emit();
     }
   }
@@ -81,7 +81,7 @@ export class RegisterFormSpecComponent {
       const user: IAccountAuth = {
         specializations: specArray
       };
-      this.registerService.updateRegistrationUser(user);
+      this.registerService.updateRegistrationAccount(user);
     }
     this.decrementStage.emit();
   }
