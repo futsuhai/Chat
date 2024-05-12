@@ -118,7 +118,7 @@ namespace Chat_Backend.Controllers
             try
             {
                 var validationError = await _accountService.RegistrationValidation(control);
-                if (validationError != null)
+                if (validationError.Type == "")
                 {
                     _logger.LogError("Error occurred during user registration: incorrect Login Or Email");
                     return Ok(validationError);

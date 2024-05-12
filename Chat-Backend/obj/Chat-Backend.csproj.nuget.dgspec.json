@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\futsuhai\\Documents\\GitHub\\Chat\\Chat\\Chat-Backend\\Chat-Backend.csproj": {}
+    "C:\\Users\\futsuhai\\RiderProjects\\Chat\\Chat-Backend\\Chat-Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\futsuhai\\Documents\\GitHub\\Chat\\Chat\\Chat-Backend\\Chat-Backend.csproj": {
+    "C:\\Users\\futsuhai\\RiderProjects\\Chat\\Chat-Backend\\Chat-Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\futsuhai\\Documents\\GitHub\\Chat\\Chat\\Chat-Backend\\Chat-Backend.csproj",
+        "projectUniqueName": "C:\\Users\\futsuhai\\RiderProjects\\Chat\\Chat-Backend\\Chat-Backend.csproj",
         "projectName": "Chat-Backend",
-        "projectPath": "C:\\Users\\futsuhai\\Documents\\GitHub\\Chat\\Chat\\Chat-Backend\\Chat-Backend.csproj",
+        "projectPath": "C:\\Users\\futsuhai\\RiderProjects\\Chat\\Chat-Backend\\Chat-Backend.csproj",
         "packagesPath": "C:\\Users\\futsuhai\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\futsuhai\\Documents\\GitHub\\Chat\\Chat\\Chat-Backend\\obj\\",
+        "outputPath": "C:\\Users\\futsuhai\\RiderProjects\\Chat\\Chat-Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\futsuhai\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -32,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -54,6 +49,10 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.9, )"
+            },
+            "Microsoft.NETCore.Platforms": {
+              "target": "Package",
+              "version": "[7.0.4, )"
             },
             "MongoDB.Driver": {
               "target": "Package",
@@ -82,19 +81,19 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
+              "version": "[7.0.18, 7.0.18]"
             },
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[7.0.16, 7.0.16]"
+              "version": "[7.0.18, 7.0.18]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
+              "version": "[7.0.18, 7.0.18]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[7.0.16, 7.0.16]"
+              "version": "[7.0.18, 7.0.18]"
             }
           ],
           "frameworkReferences": {
@@ -105,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
         }
       }
     }
