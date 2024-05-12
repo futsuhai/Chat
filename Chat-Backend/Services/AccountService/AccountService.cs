@@ -24,10 +24,6 @@ namespace Chat_Backend.Services.AccountService
         {
             var accounts = await _accountRepository.GetAllAsync();
             var account = accounts.FirstOrDefault(a => a.Login == login);
-            if (account == null)
-            {
-                return null;
-            }
             return account;
         }
 

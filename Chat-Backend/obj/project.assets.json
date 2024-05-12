@@ -241,7 +241,7 @@
           }
         }
       },
-      "Microsoft.NETCore.Platforms/5.0.0": {
+      "Microsoft.NETCore.Platforms/7.0.4": {
         "type": "package",
         "compile": {
           "lib/netstandard1.0/_._": {}
@@ -1169,10 +1169,10 @@
         "microsoft.identitymodel.tokens.nuspec"
       ]
     },
-    "Microsoft.NETCore.Platforms/5.0.0": {
-      "sha512": "VyPlqzH2wavqquTcYpkIIAQ6WdenuKoFN0BdYBbCWsclXacSOHNQn66Gt4z5NBqEYW0FAPm5rlvki9ZiCij5xQ==",
+    "Microsoft.NETCore.Platforms/7.0.4": {
+      "sha512": "yLEHlNN7O5WiND89r42sepgVwy5W/ZoTiFEdJDV7MHR1lW02LL7Nipz2TD5qM/Kx9W3/k3NP+PAP2qUdOm+leg==",
       "type": "package",
-      "path": "microsoft.netcore.platforms/5.0.0",
+      "path": "microsoft.netcore.platforms/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1180,11 +1180,10 @@
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/netstandard1.0/_._",
-        "microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+        "microsoft.netcore.platforms.7.0.4.nupkg.sha512",
         "microsoft.netcore.platforms.nuspec",
         "runtime.json",
-        "useSharedDesignerContext.txt",
-        "version.txt"
+        "useSharedDesignerContext.txt"
       ]
     },
     "Microsoft.OpenApi/1.4.3": {
@@ -1687,6 +1686,7 @@
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "Microsoft.AspNetCore.OpenApi >= 7.0.9",
+      "Microsoft.NETCore.Platforms >= 7.0.4",
       "MongoDB.Driver >= 2.22.0",
       "Swashbuckle.AspNetCore >= 6.5.0",
       "System.IdentityModel.Tokens.Jwt >= 7.1.2"
@@ -1698,11 +1698,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\futsuhai\\Documents\\GitHub\\Chat\\Chat\\Chat-Backend\\Chat-Backend.csproj",
+      "projectUniqueName": "C:\\Users\\futsuhai\\RiderProjects\\Chat\\Chat-Backend\\Chat-Backend.csproj",
       "projectName": "Chat-Backend",
-      "projectPath": "C:\\Users\\futsuhai\\Documents\\GitHub\\Chat\\Chat\\Chat-Backend\\Chat-Backend.csproj",
+      "projectPath": "C:\\Users\\futsuhai\\RiderProjects\\Chat\\Chat-Backend\\Chat-Backend.csproj",
       "packagesPath": "C:\\Users\\futsuhai\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\futsuhai\\Documents\\GitHub\\Chat\\Chat\\Chat-Backend\\obj\\",
+      "outputPath": "C:\\Users\\futsuhai\\RiderProjects\\Chat\\Chat-Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\futsuhai\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -1723,11 +1723,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1745,6 +1740,10 @@
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[7.0.9, )"
+          },
+          "Microsoft.NETCore.Platforms": {
+            "target": "Package",
+            "version": "[7.0.4, )"
           },
           "MongoDB.Driver": {
             "target": "Package",
@@ -1773,19 +1772,19 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[7.0.16, 7.0.16]"
+            "version": "[7.0.18, 7.0.18]"
           },
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[7.0.16, 7.0.16]"
+            "version": "[7.0.18, 7.0.18]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[7.0.16, 7.0.16]"
+            "version": "[7.0.18, 7.0.18]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[7.0.16, 7.0.16]"
+            "version": "[7.0.18, 7.0.18]"
           }
         ],
         "frameworkReferences": {
@@ -1796,7 +1795,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
       }
     }
   }

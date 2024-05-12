@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UYDx4EcwBU7xIKw0jB1hS0c7EGWcvfyFR9XG3EZjA5n2GfL+NVWdebDu7txsf2HJG+Ead3VC5i5H6qOx2dJObg==",
+  "dgSpecHash": "jfPH/edolETeobS6T34I2K8jXIvdtucIrEJC7kXVTB+5ma+U97puQC3JidVpVSuutExijksLaRKwyKL76W6G9Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\futsuhai\\Documents\\GitHub\\Chat\\Chat\\Chat-Backend\\Chat-Backend.csproj",
+  "projectFilePath": "C:\\Users\\futsuhai\\RiderProjects\\Chat\\Chat-Backend\\Chat-Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\futsuhai\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\futsuhai\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
@@ -20,7 +20,7 @@
     "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\7.1.2\\microsoft.identitymodel.jsonwebtokens.7.1.2.nupkg.sha512",
     "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.identitymodel.logging\\7.1.2\\microsoft.identitymodel.logging.7.1.2.nupkg.sha512",
     "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.1.2\\microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
-    "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.netcore.platforms\\7.0.4\\microsoft.netcore.platforms.7.0.4.nupkg.sha512",
     "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
     "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\futsuhai\\.nuget\\packages\\mongodb.bson\\2.22.0\\mongodb.bson.2.22.0.nupkg.sha512",
@@ -40,10 +40,10 @@
     "C:\\Users\\futsuhai\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
     "C:\\Users\\futsuhai\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
     "C:\\Users\\futsuhai\\.nuget\\packages\\zstdsharp.port\\0.6.2\\zstdsharp.port.0.6.2.nupkg.sha512",
-    "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.16\\microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.16\\microsoft.windowsdesktop.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.16\\microsoft.aspnetcore.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.16\\microsoft.netcore.app.host.win-x64.7.0.16.nupkg.sha512"
+    "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.18\\microsoft.netcore.app.ref.7.0.18.nupkg.sha512",
+    "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.18\\microsoft.windowsdesktop.app.ref.7.0.18.nupkg.sha512",
+    "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.18\\microsoft.aspnetcore.app.ref.7.0.18.nupkg.sha512",
+    "C:\\Users\\futsuhai\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.18\\microsoft.netcore.app.host.win-x64.7.0.18.nupkg.sha512"
   ],
   "logs": []
 }
